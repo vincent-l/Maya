@@ -1,0 +1,86 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="clr-namespace:Toolkit.Primitives"
+    >
+
+  <!-- =============================================================================== -->
+  <!-- Glyphs                                                                          -->
+  <!-- =============================================================================== -->
+
+  <Geometry x:Key="LeftArrowGeometry">M 4 0 L 4 8 L 0 4 Z</Geometry>
+  <Geometry x:Key="RightArrowGeometry">M 0 0 L 4 4 L 0 8 Z</Geometry>
+
+  <DataTemplate x:Key="IncreaseGlyphNormalKey">
+    <Path Data="{StaticResource RightArrowGeometry}"
+              Fill="Black"
+              SnapsToDevicePixels="True"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Focusable="False" 
+              />
+  </DataTemplate>
+
+  <DataTemplate x:Key="DecreaseGlyphNormalKey">
+    <Path Data="{StaticResource LeftArrowGeometry}"
+              Fill="Black"
+              SnapsToDevicePixels="True"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Focusable="False"
+              />
+  </DataTemplate>
+
+  <!-- =============================================================================== -->
+  <!-- Spinner                                                                         -->
+  <!-- =============================================================================== -->
+
+  <Style TargetType="{x:Type primitives:Spinner}">
+    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type primitives:Spinner}">
+          <Border x:Name="Border"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="True"
+                  >
+
+            <DockPanel>
+
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            DockPanel.Dock="Right"
+                            IsTabStop="False"
+                            Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                            ContentTemplate="{StaticResource IncreaseGlyphNormalKey}" 
+                            />
+
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            DockPanel.Dock="Left"
+                            IsTabStop="False" 
+                            Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                            ContentTemplate="{StaticResource DecreaseGlyphNormalKey}" 
+                            />
+
+              <ContentPresenter Focusable="False"
+                                Margin="{TemplateBinding Padding}" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                SnapsToDevicePixels="True" 
+                                Content="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                   AncestorType={x:Type primitives:Spinner}}, 
+                                   Path=Content}"
+                                />
+
+            </DockPanel>
+
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+
+</ResourceDictionary>

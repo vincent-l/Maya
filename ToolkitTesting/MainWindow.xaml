@@ -1,0 +1,29 @@
+﻿<Window x:Class="ToolkitTesting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="250" Width="525" 
+        >
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <StackPanel>
+        
+    <primitives:Spinner xmlns:primitives="clr-namespace:Toolkit.Primitives;assembly=Toolkit"
+                        Name="spinner1" 
+                        DataSource="{StaticResource ResourceKey=DateSpinnerDataSource}"
+                        Height="50" 
+                        FontSize="20" FontFamily="Segoe UI Light" 
+                        />
+
+    <primitives:Spinner xmlns:primitives="clr-namespace:Toolkit.Primitives;assembly=Toolkit"
+                        Name="spinner2" 
+                        Height="50"
+                        Background="Black" Foreground="White"
+                        FontSize="20" FontFamily="Segoe UI Light" 
+                        />
+
+    </StackPanel
+        >
+</Window>
